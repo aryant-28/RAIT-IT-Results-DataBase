@@ -3,7 +3,13 @@ from app.database import init_db, db
 import os
 from dotenv import load_dotenv
 import pandas as pd
+import logging
 
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
+
+# Load environment variables
 load_dotenv()
 
 def create_app():
@@ -20,22 +26,30 @@ def create_app():
     app.register_blueprint(main)
 
     with app.app_context():
-        db.create_all()
+        try:
+            db.create_all()
+            logger.info("Database tables created successfully")
+        except Exception as e:
+            logger.error(f"Error creating database tables: {str(e)}")
 
-    # Read both Excel files
-    df_sem4 = pd.read_excel('data/results_sem4.xlsx')
-    df_sem5 = pd.read_excel('data/results_sem5.xlsx')
+    # Load Excel data
+    try:
+        # Read both Excel files
+        df_sem4 = pd.read_excel('data/results_sem4.xlsx')
+        df_sem5 = pd.read_excel('data/results_sem5.xlsx')
 
-    # Display column names for both files
-    print("Semester 4 Columns:")
-    print(df_sem4.columns.tolist())
-    print("\nSemester 5 Columns:")
-    print(df_sem5.columns.tolist())
+        # Display column names for both files
+        logger.info("Semester 4 Columns:")
+        logger.info(df_sem4.columns.tolist())
+        logger.info("Semester 5 Columns:")
+        logger.info(df_sem5.columns.tolist())
 
-    # Display first few rows of each file
-    print("\nSemester 4 Sample Data:")
-    print(df_sem4.head())
-    print("\nSemester 5 Sample Data:")
-    print(df_sem5.head())
+        # Display first few rows of each file
+        logger.info("Semester 4 Sample Data:")
+        logger.info(df_sem4.head())
+        logger.info("Semester 5 Sample Data:")
+        logger.info(df_sem5.head())
+    except Exception as e:
+        logger.error(f"Error loading Excel data: {str(e)}")
 
     return app 
