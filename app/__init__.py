@@ -1,12 +1,10 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
+from app.database import init_db
 import os
 from dotenv import load_dotenv
 import pandas as pd
 
 load_dotenv()
-
-db = SQLAlchemy()
 
 def create_app():
     app = Flask(__name__)
@@ -14,9 +12,11 @@ def create_app():
     app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL', 'sqlite:///results.db')
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-    db.init_app(app)
+    # Initialize the database
+    init_db(app)
 
-    from .routes import main
+    # Register blueprints
+    from app.routes import main
     app.register_blueprint(main)
 
     with app.app_context():
