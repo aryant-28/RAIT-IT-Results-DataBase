@@ -1,5 +1,5 @@
 from flask import Flask
-from app.database import init_db
+from app.database import init_db, db
 import os
 from dotenv import load_dotenv
 import pandas as pd
