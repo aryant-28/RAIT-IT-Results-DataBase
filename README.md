@@ -1,61 +1,67 @@
-# IT Result Project
+# RAIT IT Results Database
 
-A Flask web application for analyzing and visualizing IT department exam results for semester 4 and 5.
+## Project Overview
+A Flask web application for analyzing and managing IT department exam results across different semesters.
 
-## Overview
+## Features
+- Data cleaning and preprocessing for Excel result files
+- Analysis of student performance across semesters
+- Web interface for result visualization
 
-This project processes and analyzes student result data from Excel files, providing insights into performance metrics such as SGPA, CGPA, and result distributions. The application allows users to:
+## Prerequisites
+- Python 3.8+
+- pip
+- Virtual Environment
 
-- View semester-wise performance statistics
-- Analyze individual student results
-- Compare performance across semesters
+## Setup Instructions
 
-## Technologies Used
-
-- **Backend**: Python, Flask
-- **Data Processing**: Pandas
-- **Database**: SQLite
-- **Frontend**: HTML, CSS, JavaScript
-
-## Project Structure
-
-- **app/**: Flask application files
-  - **static/**: CSS, JavaScript, and image files
-  - **templates/**: HTML templates
-  - **routes.py**: Application routes
-- **data/**: Excel data files containing semester results
-- **analyze_data.py**: Script for cleaning and analyzing result data
-- **run.py**: Application entry point
-
-## Setup and Installation
-
-1. Clone the repository
-```
-git clone <repository-url>
-cd IT-Result-Project
+### 1. Clone the Repository
+```bash
+git clone https://github.com/aryant-28/RAIT-IT-Results-DataBase.git
+cd RAIT-IT-Results-DataBase
 ```
 
-2. Create and activate a virtual environment
-```
+### 2. Create Virtual Environment
+```bash
 python -m venv venv
-venv\Scripts\activate  # On Windows
+source venv/bin/activate  # On Windows use `venv\Scripts\activate`
 ```
 
-3. Install dependencies
-```
+### 3. Install Dependencies
+```bash
 pip install -r requirements.txt
 ```
 
-4. Run the application
-```
+### 4. Run the Application
+```bash
 python run.py
 ```
 
-5. Access the application at http://localhost:5000
+## Project Structure
+- `app/`: Main Flask application
+- `data/`: Excel result files
+- `instance/`: SQLite database
+- `analyze_data.py`: Data analysis script
+- `run.py`: Application entry point
 
-## Features
+## Data Analysis
+The project includes a script `analyze_data.py` for processing and analyzing result data from Excel files.
 
-- Data cleaning and preprocessing
-- Statistical analysis of results
-- Web interface for easy data exploration
-- Performance comparison across semesters 
+## Deployment
+Recommended platforms:
+- PythonAnywhere
+- Render
+- Heroku
+
+## Contributing
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+[Specify your license here]
+
+## Contact
+[Your contact information] 

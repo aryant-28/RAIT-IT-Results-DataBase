@@ -1,37 +1,38 @@
-# Virtual Environment
-venv/
-env/
-ENV/
-
-# Python cache files
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
 
-# Flask instance folder
-instance/
-
-# Distribution / packaging
-dist/
-build/
-*.egg-info/
-
-# Environment variables
+# Virtual Environment
+venv/
 .env
-.flaskenv
+.venv
+env/
+ENV/
 
-# IDE files
+# IDE and Editor files
 .vscode/
 .idea/
+*.swp
+*.swo
+*~
 
-# Database
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Logs
+*.log
+
+# Database files (if not needed in version control)
 *.db
 *.sqlite3
 
 # Excel temporary files
 ~$*.xlsx
-~$*.xls
 
-# Logs
-logs/
-*.log 
+# Specific project exclusions
+instance/results.db 
