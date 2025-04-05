@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Department Results Portal</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+        <div class="shape shape3"></div>
+    </div>
+
+    <div class="container">
+        <header class="animate-fade-in">
+            <div class="logo pulse">
+                <i class="fas fa-graduation-cap"></i>
+            </div>
+            <h1 class="gradient-text">IT Department Results Portal</h1>
+            <p class="typewriter">Track Your Academic Progress and Performance</p>
+        </header>
+
+        <main>
+            <div class="search-card animate-slide-up">
+                <div class="card-header">
+                    <i class="fas fa-search rotating"></i>
+                    <h2>Student Search</h2>
+                </div>
+
+                {% if error %}
+                <div class="error-message animate-shake">
+                    <i class="fas fa-exclamation-circle"></i>
+                    {{ error }}
+                </div>
+                {% endif %}
+
+                <form action="{{ url_for('main.search') }}" method="post" class="search-form">
+                    <div class="input-group animate-slide-right">
+                        <label for="roll_no">
+                            <i class="fas fa-id-card"></i>
+                            Roll Number
+                        </label>
+                        <input type="text" 
+                               id="roll_no" 
+                               name="roll_no" 
+                               placeholder="Enter your roll number"
+                               autocomplete="off"
+                               class="glow-effect">
+                        <span class="focus-border"></span>
+                    </div>
+                    
+                    <div class="separator bounce">
+                        <span>OR</span>
+                    </div>
+
+                    <div class="input-group animate-slide-left">
+                        <label for="name">
+                            <i class="fas fa-user"></i>
+                            Name
+                        </label>
+                        <input type="text" 
+                               id="name" 
+                               name="name" 
+                               placeholder="Enter your full name"
+                               autocomplete="off"
+                               class="glow-effect">
+                        <span class="focus-border"></span>
+                    </div>
+
+                    <div class="form-note float">
+                        <i class="fas fa-info-circle pulse"></i>
+                        <p>Enter either Roll Number or Name to search</p>
+                    </div>
+
+                    <button type="submit" class="search-btn gradient-btn">
+                        <span class="btn-content">
+                            <i class="fas fa-search"></i>
+                            Search Results
+                        </span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="features-grid animate-fade-in">
+                <div class="feature-card float">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Performance Tracking</h3>
+                    <p>Compare your SGPA and CGPA across semesters</p>
+                </div>
+                <div class="feature-card float delay-1">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-ranking-star"></i>
+                    </div>
+                    <h3>Class Ranking</h3>
+                    <p>View your position among your peers</p>
+                </div>
+                <div class="feature-card float delay-2">
+                    <div class="icon-wrapper">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3>Subject Analysis</h3>
+                    <p>Detailed subject-wise performance</p>
+                </div>
+            </div>
+        </main>
+
+        <footer class="animate-fade-in">
+            <div class="wave-container">
+                <div class="wave"></div>
+            </div>
+            <p>&copy; 2024 IT Department. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script>
+        // Add input validation and real-time feedback
+        document.querySelectorAll('input').forEach(input => {
+            input.addEventListener('input', function() {
+                this.classList.toggle('has-value', this.value.length > 0);
+            });
+        });
+
+        // Add loading state to search button
+        document.querySelector('form').addEventListener('submit', function() {
+            const btn = this.querySelector('.search-btn');
+            btn.classList.add('loading');
+            btn.disabled = true;
+        });
+
+        // Animate feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html> 
